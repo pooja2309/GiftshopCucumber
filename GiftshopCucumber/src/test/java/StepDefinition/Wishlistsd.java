@@ -2,10 +2,13 @@ package StepDefinition;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import PageObjects.WishList;
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import UIStore.LandingpageUI;
 import Utilities.Extentreports;
 import Utilities.Readproperty;
@@ -21,6 +24,7 @@ public class Wishlistsd {
 	LandingpageUI lploc;
 	String url = rp.getUrl();
 	WishList wl;
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
     @Given("^Open the URL$")
     public void open_the_url() {
     	driver = CreateAccountsd.getdriver();
@@ -40,6 +44,7 @@ public class Wishlistsd {
     public void navigate_to_the_page_and_display() throws InterruptedException {
     	driver = helper.changetonewdriver(driver);
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+		log.info("Wish List - Successful");
     }
 	public static WebDriver getdriver() {
 		return driver;

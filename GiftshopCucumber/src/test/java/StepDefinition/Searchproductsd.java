@@ -1,10 +1,13 @@
 package StepDefinition;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 import PageObjects.SearchService;
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import Utilities.Extentreports;
 import Utilities.Readproperty;
 import cucumber.api.junit.Cucumber;
@@ -20,7 +23,7 @@ public class Searchproductsd {
 	static Extentreports er;
 	SearchService search;
 	String path;
-
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
 	@Given("^The Website is open fetch driver$")
 	public void the_website_is_open_fetch_driver() {
 		driver = Openbrowsersd.getdriver();
@@ -40,7 +43,7 @@ public class Searchproductsd {
 	public void search_products_mentioned_in_excel() throws Throwable {
 		search.getproducts(path);
 		search.searchforproducts(er);
-		
+		log.info("Product Search Successful");
 	}
 	
 	public static WebDriver getdriver() {

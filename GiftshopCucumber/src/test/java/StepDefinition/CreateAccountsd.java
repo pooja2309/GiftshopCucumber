@@ -2,10 +2,13 @@ package StepDefinition;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import PageObjects.CreateAccount;
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import UIStore.LandingpageUI;
 import UIStore.LoginpageUI;
 import UIStore.SignuppageUI;
@@ -26,6 +29,7 @@ public class CreateAccountsd {
 	CreateAccount ca;
 	SignuppageUI suloc;
 	LoginpageUI loginpageloc;
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
     @Given("^Fetch the driver and open home page$")
     public void fetch_the_driver_and_open_home_page() {
     	driver = Loginsd.getdriver();
@@ -48,6 +52,7 @@ public class CreateAccountsd {
 		driver = helper.changetonewdriver(driver);
 		ca.clickoncreateaccount(loginpageloc);
 		driver = helper.changetonewdriver(driver);
+		log.info("Create Account - Successful");
     }
 
     @And("^Enter credentials$")

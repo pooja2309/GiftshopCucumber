@@ -1,9 +1,12 @@
 package StepDefinition;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import PageObjects.Shopbycategory;
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import UIStore.LandingpageUI;
 import UIStore.ShopobycategoryUI;
 import Utilities.Extentreports;
@@ -23,6 +26,7 @@ public class Shopbycategorysd {
 	String url = rp.getUrl();
 	ShopobycategoryUI scloc;
 	Shopbycategory sc;
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
     @Given("^The page is open fetch driver$")
     public void the_page_is_open_fetch_driver() {
     	driver = Corporategiftsd.getdriver();
@@ -42,11 +46,13 @@ public class Shopbycategorysd {
     @Then("^Navigate to the respective page$")
     public void navigate_to_the_respective_page() throws InterruptedException {
     	driver = helper.changetonewdriver(driver);
+    	log.info("Shop by category");
     }
 
     @And("^Sort in order$")
     public void sort_in_order() {
     	sc.sortBy(scloc);
+    	log.info("Sorting products");
     }
 	public static WebDriver getdriver() {
 		return driver;

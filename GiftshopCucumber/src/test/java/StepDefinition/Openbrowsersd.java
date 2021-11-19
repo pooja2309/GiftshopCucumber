@@ -2,11 +2,14 @@ package StepDefinition;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import Utilities.Extentreports;
 import Utilities.Readproperty;
 import io.cucumber.java.en.And;
@@ -19,7 +22,7 @@ public class Openbrowsersd {
 	static WebDriver driver = null;
 	WebDriverHelper helper = null;
 	static Extentreports er;
-	
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
 	
 	@Given("The chrome browser is open")
 	public void the_chrome_browser_is_open() {
@@ -37,6 +40,7 @@ public class Openbrowsersd {
         er = new Extentreports(driver);
         er.startTest("Opening Website");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        log.info("Browser opened and fetched URL");
         er.endTest();
     }
     

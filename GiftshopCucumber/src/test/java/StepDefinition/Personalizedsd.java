@@ -2,10 +2,13 @@ package StepDefinition;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import PageObjects.PersonalizedGift;
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import UIStore.LandingpageUI;
 import UIStore.PersonalizedpageUI;
 import Utilities.Extentreports;
@@ -24,7 +27,7 @@ public class Personalizedsd {
 	String url = rp.getUrl();
 	PersonalizedGift pg;
 	PersonalizedpageUI pgloc;
-
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
 	@Given("^The home page is open$")
 	public void the_home_page_is_open() {
 		driver = Corporategiftsd.getdriver();
@@ -44,6 +47,7 @@ public class Personalizedsd {
 	@Then("^Navigate to the page and select product$")
 	public void navigate_to_the_page_and_select_product() {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		log.info("Personalized Gift page");
 	}
 
 	@And("^Customize the \"([^\"]*)\" to be printed$")
@@ -51,6 +55,7 @@ public class Personalizedsd {
 		pg.addproduct(pgloc, name);
 		driver = helper.changetonewdriver(driver);
 		pg.verify(pgloc);
+		log.info("Customized the gifts and added to cart");
 		driver.get(url);
 	}
 

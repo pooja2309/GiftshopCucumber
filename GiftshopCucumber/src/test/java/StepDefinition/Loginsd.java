@@ -2,10 +2,13 @@ package StepDefinition;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import PageObjects.Login;
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import UIStore.LandingpageUI;
 import UIStore.LoginpageUI;
 import Utilities.Extentreports;
@@ -22,6 +25,7 @@ public class Loginsd {
 	LandingpageUI lploc;
 	String url = rp.getUrl();
 	LoginpageUI loginloc;
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
 	Login login;
 	@Given("^The landing page is open fetch driver$")
     public void the_landing_page_is_open_fetch_driver() {
@@ -45,6 +49,7 @@ public class Loginsd {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		login.entercorrectdetails(loginloc, emailid, password);
 		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
+		log.info("Login Successful");
     }
 	
 	public static WebDriver getdriver() {

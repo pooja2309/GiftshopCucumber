@@ -2,10 +2,13 @@ package StepDefinition;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import PageObjects.CorporateGifts;
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import UIStore.CorporategiftpageUI;
 import UIStore.LandingpageUI;
 import Utilities.Extentreports;
@@ -20,6 +23,7 @@ public class Corporategiftsd {
 	static WebDriver driver = null;
 	WebDriverHelper helper = null;
 	static Extentreports er;
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
 	LandingpageUI lploc;
 	String url = rp.getUrl();
 	CorporateGifts cg;
@@ -45,6 +49,7 @@ public class Corporategiftsd {
     public void navigate_to_details_page() throws InterruptedException {
     	driver = helper.changetonewdriver(driver);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	
+		log.info("Corporate Gift Enquiry Successful");
     }
 
     @And("^Take user input$")

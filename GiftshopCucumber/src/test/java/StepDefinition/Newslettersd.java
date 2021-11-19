@@ -2,10 +2,13 @@ package StepDefinition;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import PageObjects.Newsletter;
 import ReusableComponents.WebDriverHelper;
+import Runner.RunnerTest;
 import UIStore.LandingpageUI;
 import Utilities.Extentreports;
 import Utilities.Readproperty;
@@ -20,6 +23,7 @@ public class Newslettersd {
 	static Extentreports er;
 	LandingpageUI lploc;
 	String url = rp.getUrl();
+	private static Logger log = LogManager.getLogger(RunnerTest.class.getName());
 	Newsletter nl;
     @Given("^Open the URL in browser$")
     public void open_the_url_in_browser() {
@@ -39,6 +43,7 @@ public class Newslettersd {
 
     @Then("^Navigate and quit$")
     public void navigate_and_quit() {
+    	log.info("Newletter Subscription Successful");
     	driver.quit();
     }
 	public static WebDriver getdriver() {
